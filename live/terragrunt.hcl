@@ -1,5 +1,5 @@
 locals {
-  globals = jsondecode(file("../globals.json"))
+  globals = jsondecode(file("./globals.json"))
 }
 
 remote_state {
@@ -14,7 +14,7 @@ remote_state {
 }
 
 terraform {
-  source = "${path_relative_from_include()}/../../modules/${path_relative_to_include()}"
+  source = "${path_relative_from_include()}/../modules/${path_relative_to_include()}"
 }
 
 generate "provider" {

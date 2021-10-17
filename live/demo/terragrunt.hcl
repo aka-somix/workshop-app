@@ -12,6 +12,8 @@ dependency "managed" {
   mock_outputs = {
     lambda_role = ""
     appsync_role = ""
+    tags = ""
+    userid = ""
   }
 
   mock_outputs_allowed_terraform_commands = [
@@ -30,7 +32,8 @@ inputs = {
 
   lambda_role = dependency.managed.outputs.lambda_role
   appsync_role = dependency.managed.outputs.appsync_role
-  
+  tags = dependency.managed.outputs.tags
+  userid = dependency.managed.outputs.userid
 }
 
 

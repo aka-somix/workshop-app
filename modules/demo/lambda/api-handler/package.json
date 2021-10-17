@@ -1,0 +1,14 @@
+{
+  "name": "api-handler",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "Storm RFA",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "aws-sdk": "^2.1008.0"
+  },
+  "scripts": {
+    "build": "rm -Rf dist && mkdir dist && cp -R node_modules src/* package.json yarn.lock dist"
+  }
+}

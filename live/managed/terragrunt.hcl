@@ -6,6 +6,8 @@ locals {
   globals = jsondecode(file(find_in_parent_folders("globals.json")))  
 }
 
+# Input variables to pass to the terraform code
+
 inputs = {
   account_id = get_aws_account_id()
   student = get_env("STUDENT", local.globals.student)

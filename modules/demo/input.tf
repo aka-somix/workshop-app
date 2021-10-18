@@ -1,3 +1,7 @@
+# 
+# Input variables, they can be used throughout the module 
+# and are passed from other modules in our project
+# 
 variable "student" {
   type = string
 }

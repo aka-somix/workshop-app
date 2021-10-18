@@ -2,6 +2,9 @@ locals {
   globals = jsondecode(file("./globals.json"))
 }
 
+# 
+# This is where the state of your infrastructure is saved online
+# 
 remote_state {
   backend = "s3"
   config = {
@@ -17,6 +20,10 @@ terraform {
   source = "${path_relative_from_include()}/../modules/${path_relative_to_include()}"
 }
 
+# 
+# Generates two .tf files with the configuration
+# for providers and the backend configuration
+# 
 generate "provider" {
   path      = "provider.tf"
   if_exists = "overwrite"

@@ -6,6 +6,10 @@ locals {
   globals = jsondecode(file(find_in_parent_folders("globals.json")))  
 }
 
+#
+# Dependency from "managed" modules, so we can use output variables
+# of that module as input variables
+#
 dependency "managed" {
   config_path = "../managed"
 

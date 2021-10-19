@@ -1,0 +1,26 @@
+{
+  "tasks": [
+    {
+      "id": 10124,
+      "name": "Example Task",
+      "partecipants": [],
+      "expiration": null,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": 11234,
+      "name": "Let's Cook (pizza)",
+      "partecipants": [],
+      "expiration": null,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": 14232,
+      "name": "Take out the trash",
+      "partecipants": [],
+      "expiration": null,
+      "status": "AVAILABLE"
+    }
+  ]
+}
+  

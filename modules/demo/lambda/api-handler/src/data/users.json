@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "username": "w.white",
+      "name": "Walter",
+      "surname": "White",
+      "university": "PoliMi"
+    },
+    {
+      "username": "j.pinkman",
+      "name": "Jesse",
+      "surname": "Pinkman",
+      "university": "UniBo"
+    },
+    {
+      "username": "s.goodman",
+      "name": "Saul",
+      "surname": "Goodman",
+      "university": "PoliTo"
+    },
+    {
+      "username": "g.fring",
+      "name": "Gus",
+      "surname": "Fring",
+      "university": "UniCa"
+    }
+  ]
+}
+  

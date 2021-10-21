@@ -1,0 +1,34 @@
+enum Status {
+  AVAILABLE
+  EXPIRED
+}
+
+type User {
+  username: String!
+  name: String!
+  surname: String!
+  university: String
+}
+
+input AddUserInput {
+  name: String!
+  surname: String!
+  university: String
+}
+
+type Task {
+  id: String!
+  name: String!
+  partecipants: [User]!
+  expiration: Int
+  status: Status!
+}
+
+type Query {
+  getAllUsers: [User]! @aws_api_key
+  getUser(username: String!): User @aws_api_key
+}
+
+type Mutation {
+  addUser(user: AddUserInput!): User @aws_api_key
+}

@@ -3,7 +3,7 @@ const users = require('../data/users.json').users
 exports.deleteUser = function (args) {
   // Data validation
   if (!args) {
-    throw Error("Validation Error, arguments are needed for getUser method");
+    throw Error("Validation Error, arguments are needed for deleteUser method");
   }
 
   // Query for data

@@ -3,7 +3,7 @@ const tasks = require('../data/tasks.json').tasks
 exports.addTask = function (args) {
   // Data validation
   if (!args) {
-    throw Error("Validation Error, arguments are needed for addUser method");
+    throw Error("Validation Error, arguments are needed for addTask method");
   }
 
   if (!checkExpirationDate(args.task.expiration)) {

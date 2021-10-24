@@ -3,7 +3,7 @@ const tasks = require('../data/tasks.json').tasks
 exports.deleteTask = function (args) {
   // Data validation
   if (!args) {
-    throw Error("Validation Error, arguments are needed for getUser method");
+    throw Error("Validation Error, arguments are needed for deleteTask method");
   }
 
   // Query for data

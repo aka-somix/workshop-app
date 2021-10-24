@@ -1,20 +1,28 @@
-const tasks = require('../data/tasks.json').tasks
+const DocumentClient = require('aws-sdk/clients/dynamodb').DocumentClient;
 
-exports.deleteTask = function (args) {
+const dbClient = new DocumentClient();
+
+exports.deleteTask = async function (args) {
   // Data validation
   if (!args) {
     throw Error("Validation Error, arguments are needed for deleteTask method");
   }
 
-  // Query for data
-  indexToDelete = tasks
-    .map((t) => t.id)
-    .indexOf(parseInt(args.id));
+  try {
+    await dbClient
+      .delete({
+        TableName: process.env.DYNAMO_TABLE,
+        Key: {
+          EntityRef: 'TASK',
+          EntityID: args.id,
+        },
+      })
+      .promise();
 
-  if(indexToDelete < 0) return false;
+    return true;
 
-  // Persist mutation
-  tasks.splice(indexToDelete,1);
-
-  return true;
+  } catch(error) {
+    console.error('DynamoDB Error:', error)
+    return false;
+  }
 }

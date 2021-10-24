@@ -8,6 +8,12 @@ resource "aws_lambda_function" "api_handler" {
   timeout          = 3
 
   tags = var.tags
+
+  environment {
+    variables = {
+      DYNAMO_TABLE = aws_dynamodb_table.demo.id
+    }
+  }
 }
 
 resource "null_resource" "yarn_install_api_handler" {

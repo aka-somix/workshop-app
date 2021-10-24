@@ -1,16 +1,36 @@
-const users = require('../data/users.json').users
+const DocumentClient = require('aws-sdk/clients/dynamodb').DocumentClient;
 
-exports.getUser = function (args) {
+const dbClient = new DocumentClient();
+
+exports.getUser = async function (args) {
   // Data validation
   if (!args) {
     throw Error("Validation Error, arguments are needed for getUser method");
   }
 
-  // Query data
-  const user = users.filter( (u) => u.username == args.username);
-  if (user.length > 1) {
-    throw Error(`Error. Found ${user.length} users with username ${args.username}. Expected 1`)
-  }
+  try {
+    const response = await dbClient
+      .get({
+        TableName: process.env.DYNAMO_TABLE,
+        Key: {
+          EntityRef: 'USER',
+          EntityID: args.username,
+        },
+      })
+      .promise();
+    
+    const itemFound = response.Item;
+    console.log(itemFound);
 
-  return user.length > 0 ? user[0] : null;
+    return {
+      username: itemFound.EntityID,
+      name: itemFound.name,
+      surname: itemFound.surname,
+      university: itemFound.university || null
+    };
+    
+  } catch(error) {
+    console.error('DynamoDB Error:', error)
+    throw Error('Internal Error while trying to access to the Database')
+  }
 }

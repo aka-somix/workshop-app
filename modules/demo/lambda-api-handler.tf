@@ -8,7 +8,6 @@ resource "aws_lambda_function" "api_handler" {
   timeout          = 3
 
   tags = var.tags
-
 }
 
 resource "null_resource" "yarn_install_api_handler" {

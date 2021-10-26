@@ -4,14 +4,14 @@
       "id": 10124,
       "name": "Example Task",
       "partecipants": [],
-      "expiration": null,
+      "expiration": 1635503953,
       "status": "AVAILABLE"
     },
     {
       "id": 11234,
       "name": "Let's Cook (pizza)",
       "partecipants": [],
-      "expiration": null,
+      "expiration": 1635503953,
       "status": "AVAILABLE"
     },
     {

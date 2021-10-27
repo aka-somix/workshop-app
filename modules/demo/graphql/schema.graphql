@@ -24,11 +24,21 @@ type Task {
   status: Status!
 }
 
+input AddTaskInput {
+  name: String!
+  expiration: Int
+}
+
 type Query {
   getAllUsers: [User]! @aws_api_key
   getUser(username: String!): User @aws_api_key
+  getAllTasks: [Task]! @aws_api_key
+  getTask(id: String!): Task @aws_api_key
 }
 
 type Mutation {
   addUser(user: AddUserInput!): User @aws_api_key
+  deleteUser(username: String!): Boolean @aws_api_key
+  addTask(task: AddTaskInput!): Task @aws_api_key
+  deleteTask(id: String!): Boolean @aws_api_key
 }

@@ -1,6 +1,8 @@
-const tasks = require('../data/tasks.json').tasks
+const DocumentClient = require('aws-sdk/clients/dynamodb').DocumentClient;
 
-exports.addTask = function (args) {
+const dbClient = new DocumentClient();
+
+exports.addTask = async function (args) {
   // Data validation
   if (!args) {
     throw Error("Validation Error, arguments are needed for addTask method");
@@ -19,9 +21,25 @@ exports.addTask = function (args) {
     status: 'AVAILABLE'
   }
 
-  tasks.push(newTask);
+  try {
+    await dbClient
+      .put({
+        TableName: process.env.DYNAMO_TABLE,
+        Item: {
+          EntityRef: 'TASK',
+          EntityID: newTask.id.toString(),
+          name: newTask.name,
+          expiration: newTask.expiration,
+          status: newTask.status
+        },
+      })
+      .promise();
 
-  return newTask;
+    return newTask;
+  } catch(error) {
+    console.error('DynamoDB Error:', error)
+    throw Error('Internal Error while trying to access to the Database')
+  }
 }
 
 function generateId(arg) {

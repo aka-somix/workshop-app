@@ -1,20 +1,28 @@
-const users = require('../data/users.json').users
+const DocumentClient = require('aws-sdk/clients/dynamodb').DocumentClient;
 
-exports.deleteUser = function (args) {
+const dbClient = new DocumentClient();
+
+exports.deleteUser = async function (args) {
   // Data validation
   if (!args) {
     throw Error("Validation Error, arguments are needed for deleteUser method");
   }
 
-  // Query for data
-  indexToDelete = users
-    .map((u) => u.username)
-    .indexOf(args.username);
+  try {
+    await dbClient
+      .delete({
+        TableName: process.env.DYNAMO_TABLE,
+        Key: {
+          EntityRef: 'USER',
+          EntityID: args.username,
+        },
+      })
+      .promise();
 
-  if(indexToDelete < 0) return false;
+    return true;
 
-  // Persist mutation
-  users.splice(indexToDelete,1);
-
-  return true;
+  } catch(error) {
+    console.error('DynamoDB Error:', error)
+    return false;
+  }
 }

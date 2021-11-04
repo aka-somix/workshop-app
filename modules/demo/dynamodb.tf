@@ -6,6 +6,10 @@ resource "aws_dynamodb_table" "demo" {
   hash_key     = "EntityRef" // Partition Key
   range_key    = "EntityID"  // Sort Key
 
+  # Dynamo Streams option
+  stream_enabled = true
+  stream_view_type = "NEW_AND_OLD_IMAGES"
+
   attribute {
     name = "EntityRef"
     type = "S"
@@ -14,6 +18,11 @@ resource "aws_dynamodb_table" "demo" {
   attribute {
     name = "EntityID"
     type = "S"
+  }
+
+  ttl {
+    enabled = true
+    attribute_name = "expiration"
   }
 
   tags = var.tags

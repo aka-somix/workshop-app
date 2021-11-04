@@ -1,0 +1,11 @@
+{
+  "name": "stream-handler",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "s.cirone",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "aws-sdk": "^2.1018.0"
+  }
+}

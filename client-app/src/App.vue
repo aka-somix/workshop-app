@@ -41,6 +41,37 @@ h4 {
   font-size: 20pt;
 }
 
+.button {
+  display: inline-block;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  background: #00a896;
+  color: white;
+  border-radius: 8px;
+  font-size: 20pt;
+  transition: 300ms;
+  margin: 0.5rem;
+}
+
+.button.small{
+  padding: 0.5rem 1rem;
+  font-size: 14pt;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background: #08d8c3;
+}
+
+.button.outline {
+  background: none;
+  border: 4px solid white;
+}
+.button.outline:hover {
+  background: white;
+  color: #00a896;
+}
+
 /* APP Global Styling */
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -56,8 +87,11 @@ body {
 
 /* NAV Styling */
 
-#nav {
+#nav, .users, .tasks {
   margin: 1vw 5vw;
+}
+
+#nav {
   display: flex;
 }
 

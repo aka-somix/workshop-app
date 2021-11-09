@@ -72,7 +72,7 @@ export default {
 
   img {
     padding: 2vw;
-    width: 40%;
+    width: 36%;
     height: auto;
   }
 

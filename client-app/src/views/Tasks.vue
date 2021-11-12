@@ -20,10 +20,15 @@
 
     <!-- Task management -->
     <div class="panel" v-if="tasks.length > 0">
-          <!-- TASKS HERE!  -->
+      <task-item 
+        v-for="(task, index) in tasks"
+        :key="index"
+        :task="task"
+        @task-deleted="onTaskDeleted(index)"
+      />
     </div>
     <div v-else class="not-found">
-      <img id="not-found-img" src="../assets/users_not_found.svg"/>
+      <img id="not-found-img" src="../assets/tasks_not_found.svg"/>
       <h3>
         It seems like there are no Tasks so far 😥 <br>
         Start by creating one up here!
@@ -35,10 +40,11 @@
 
 <script>
 import TaskCreationPanel from '@/components/TaskCreationPanel.vue'
+import TaskItem from '../components/TaskItem.vue'
 
 export default {
   name: 'User',
-  components: {TaskCreationPanel},
+  components: {TaskCreationPanel, TaskItem},
   // Local properties of component
   data() {
     return {
@@ -46,7 +52,6 @@ export default {
       tasks: [],
       // Creation panel status
       showCreationPanel: false,
-      forceReload: 0,
     }
   },
   // Lifecycles Hooks
@@ -62,7 +67,12 @@ export default {
     onTaskCreated(evt, task) {
       this.tasks.push(task)
       this.showCreationPanel = false;
-    }
+    },
+    onTaskDeleted(index) {
+      const task = this.tasks[index];
+      console.log("TASK", task);
+      this.tasks.splice(index, 1);
+    } 
   }
 }
 </script>
@@ -111,8 +121,12 @@ export default {
   }
 
   .panel {
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;  
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .task-item {
+    margin: 1rem;
   }
 
   #not-found-img{

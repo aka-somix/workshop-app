@@ -1,6 +1,5 @@
 <template>
   <div id="app" class="container">
-    <!-- <playground/> -->
     <div id="nav">
       <router-link class="entry" to="/">Home</router-link>
       <router-link class="entry" to="/users">Users</router-link>

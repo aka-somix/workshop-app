@@ -19,7 +19,7 @@
     />
 
     <!-- User management -->
-    <div v-if="Object.values(usersMap).length > 0">
+    <div v-if="users.length > 0">
       <div class="user-item header">
         <h4>Name</h4>
         <h4>Surname</h4>
@@ -27,10 +27,10 @@
         <h4>Options</h4>
       </div>
       <user-item 
-        v-for="user in Object.values(usersMap)" 
-        :key="(user.id, forceReload)"
+        v-for="(user, index) in users"
+        :key="user.username"
         :user="user"
-        @user-deleted="onUserDeleted"
+        @user-deleted="onUserDeleted(index)"
       />
     </div>
     <div v-else class="not-found">
@@ -46,6 +46,7 @@
 <script>
 import UserCreationPanel from '@/components/UserCreationPanel.vue'
 import UserItem from '../components/UserItem.vue'
+
 export default {
   name: 'User',
   components: {UserCreationPanel, UserItem},
@@ -53,15 +54,14 @@ export default {
   data() {
     return {
       // Local user list
-      usersMap: {},
+      users: [],
       // Creation panel status
       showCreationPanel: false,
-      forceReload: 0,
     }
   },
   // Lifecycles Hooks
   mounted() {
-    console.log("MOUNTED")
+    console.log("MOUNTED");
   },
   computed: {
     addUserClass() {
@@ -70,14 +70,13 @@ export default {
   },
   methods: {
     onUserCreated(evt, user) {
-      this.usersMap[user.id] = user;
+      this.users.push(user);
       this.showCreationPanel = false;
     },
-    onUserDeleted(evt, userId) {
-      const user = this.usersMap[userId];
+    onUserDeleted(index) {
+      const user = this.users[index];
       console.log("USER", user);
-      delete this.usersMap[userId];
-      this.forceReload++;
+      delete this.users.splice(index, 1);
     }
   }
 }

@@ -17,7 +17,7 @@ const routes = [
   },
   {
     path: '/tasks',
-    name: 'Users',
+    name: 'Tasks',
     component: () => import('../views/Tasks.vue')
   },
   {

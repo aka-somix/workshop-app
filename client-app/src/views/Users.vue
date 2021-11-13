@@ -76,7 +76,7 @@ export default {
     onUserDeleted(index) {
       const user = this.users[index];
       console.log("USER", user);
-      delete this.users.splice(index, 1);
+      this.users.splice(index, 1);
     }
   }
 }

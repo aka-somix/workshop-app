@@ -14,8 +14,8 @@ export default {
   methods: {
     deleteUser() {
       // TODO Persist changes
-      // Emit the new user to store it locally
-      this.$emit('user-deleted', this.$event, this.user.id);
+      // Emit the delete user to update it locally
+      this.$emit('user-deleted');
     }
   }
 }

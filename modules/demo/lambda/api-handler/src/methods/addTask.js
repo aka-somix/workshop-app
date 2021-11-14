@@ -26,11 +26,12 @@ exports.addTask = async function (args) {
       .put({
         TableName: process.env.DYNAMO_TABLE,
         Item: {
-          EntityRef: 'TASK',
+          EntityRef: "TASK",
           EntityID: newTask.id.toString(),
           name: newTask.name,
           expiration: newTask.expiration,
-          status: newTask.status
+          status: newTask.status,
+          partecipants: newTask.partecipants,
         },
       })
       .promise();
